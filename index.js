@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const { Pool } = require("pg");
 const fs = require('fs');
 const path = require('path');
+const { error } = require("console");
 const app = express();
 dotenv.config();
 
@@ -83,29 +84,29 @@ async function crearUsuario(req, res) {
     const pool = new Pool({
       connectionString,
     });
-    const { nombre, correo, contrasena } = req.body;
-    if (!nombre || !correo || !contrasena) {
+    const { usuario, email, contrasena } = req.body;
+    if (!usuario || !email || !contrasena) {
       return res.status(400).send("Missing required fields");
     }
 
     const client = await pool.connect();
     const checkEmail = await client.query(
-      "SELECT * FROM usuarios WHERE correo = $1",
-      [correo]
+      "SELECT * FROM usuarios WHERE email = $1",
+      [email]
     );
     if (checkEmail.rows.length > 0) {
       return res.status(400).send("Email already exists");
     }
 
     const result = await client.query(
-      `INSERT INTO usuarios (nombre, correo, contrasena) 
+      `INSERT INTO usuarios (usuario, email, contrasena) 
        VALUES ($1, $2, $3) RETURNING *`,
-      [nombre, correo, contrasena]
+      [usuario, email, contrasena]
     );
     const newUser = result.rows[0];
 
     // Redirigir al usuario a la página de perfil
-    const indexlHTML = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
+    const indexlHTML = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
     res.send(indexlHTML);
 
 
@@ -119,14 +120,14 @@ app.post("/login", iniciarSesion);
 
 async function iniciarSesion(req, res) {
   try {
-    const { correo, contrasena } = req.body;
-    if (!correo || !contrasena) {
+    const { email, contrasena } = req.body;
+    if (!email || !contrasena) {
       return res.status(400).send("Correo y contraseña son requeridos");
     }
 
     const result = await pool.query(
-      "SELECT * FROM usuarios WHERE correo = $1 AND contrasena = $2",
-      [correo, contrasena]
+      "SELECT * FROM usuarios WHERE email = $1 AND contrasena = $2",
+      [email, contrasena]
     );
 
     if (result.rows.length === 0) {
@@ -134,7 +135,7 @@ async function iniciarSesion(req, res) {
     }
 
     // Si las credenciales son válidas, redirige al usuario al perfil.html
-    res.redirect("index.html");
+    res.redirect("");
 
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
@@ -222,10 +223,6 @@ app.delete("/puntuacion/:correo", eliminarDato);
 
 
 
-/*personas_y_cultura_digital int,
-        procesos_de_la_entidad int,
-        datos_digitales_y_analytics int,
-        tecnologia_digital int*/
 
 async function crearDato(req, res) {
   try {
@@ -285,6 +282,7 @@ async function eliminarDato(req, res) {
     res.status(500).send("Error al eliminar evento");
   }
 }
+
 
 
 
