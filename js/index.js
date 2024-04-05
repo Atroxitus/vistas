@@ -77,7 +77,7 @@ app.post("/usuarios", crearUsuario);
 app.get("/usuarios", obtenerUsuarios);
 app.get("/usuarios/:email", obtenerUsuarioPorId);
 app.put("/usuarios/:email", actualizarUsuario);
-app.delete("/usuarios/:nombre", eliminarUsuario);
+app.delete("/usuarios/:email", eliminarUsuario);
 
 //Requerimentos para el hash
 const bcrypt = require('bcrypt');
@@ -251,8 +251,8 @@ async function actualizarUsuario(req, res) {
 
 async function eliminarUsuario(req, res) {
   try {
-    const { correo } = req.params;
-    const result = await pool.query("DELETE FROM usuarios WHERE correo = $1", [correo]);
+    const { email } = req.params;
+    const result = await pool.query("DELETE FROM usuarios WHERE email = $1", [email]);
     if (result.rowCount > 0) {
       res.status(204).send();
     } else {
@@ -266,7 +266,7 @@ async function eliminarUsuario(req, res) {
 
 // Funciones controladoras CRUD para puntuacion
 
-app.post("/puntuacion", crearDato);
+// app.post("/puntuacionnn", crearDato);
 app.get("/puntuacionn/:idp", obtenerDato);
 app.put("/puntuacion/:idp", actualizarDato);
 app.delete("/puntuacion/:idp", eliminarDato);
@@ -275,20 +275,24 @@ app.post('/puntuacion', async (req, res) => {
   const datosRecibidos = req.body; // Obtén los datos del cuerpo de la solicitud
   
   try {
+    
     const result = await pool.query(
-      "INSERT INTO puntuacion (idp, personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital) VALUES (DEFAULT, $1, $2, $3, $4) RETURNING idp",
+      "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4)",
       [datosRecibidos.avgPrimera, datosRecibidos.avgPrimera2, datosRecibidos.avgPrimera3, datosRecibidos.avgPrimera4]
     );
-
-    const idpGenerado = result.rows[0].idp; // Captura el idp generado por la base de datos
+    
 
     console.log("Datos insertados en la base de datos:", result);
-    res.status(201).json({ idp: idpGenerado }); // Envía el idp generado como parte de la respuesta
+    res.status(200).json("Datos recibidos y procesados correctamente");
+    
   } catch (error) {
     console.error("Error al procesar los datos:", error);
     res.status(500).send("Error al procesar los datos");
   }
+ 
+
 });
+ 
 
 app.get('/puntuacionnn/:idp', async (req, res) => {
   const idp = req.params.idp;

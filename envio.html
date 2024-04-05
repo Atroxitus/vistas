@@ -11,6 +11,7 @@
     <title>Encuesta</title>
 
 </head>
+
 <body>
     <div class="content">
         <div class="imagen">
@@ -164,7 +165,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("formularioEncuesta").addEventListener("submit", function (event) {
                 event.preventDefault(); // Evitar el envío por defecto del formulario
-            
+
                 let allItems = [];
                 let isValid = true;
                 const ouItem = document.querySelectorAll('input');
@@ -204,19 +205,20 @@
 
                 const onlyType2 = allItems.filter((a) => a.type.includes('segunda'));
                 const arraicito2 = [];
-                onlyType.map((r) => {
+                onlyType2.map((r) => {
                     arraicito2.push(r.value);
                 });
                 let sum2 = arraicito2.reduce((previous, current) => current += previous);
                 let avgPrimera2 = sum2 / onlyType2.length;
 
-                console.log(sum, avgPrimera2);
+                console.log(sum2, avgPrimera2);
 
                 const onlyType3 = allItems.filter((a) => a.type.includes('tercera'));
                 const arraicito3 = [];
-                onlyType.map((r) => {
+                onlyType3.map((r) => {
                     arraicito3.push(r.value);
                 });
+
                 let sum3 = arraicito3.reduce((previous, current) => current += previous);
                 let avgPrimera3 = sum3 / onlyType3.length;
 
@@ -224,7 +226,7 @@
 
                 const onlyType4 = allItems.filter((a) => a.type.includes('cuarta'));
                 const arraicito4 = [];
-                onlyType.map((r) => {
+                onlyType4.map((r) => {
                     arraicito4.push(r.value);
                 });
                 let sum4 = arraicito4.reduce((previous, current) => current += previous);
@@ -232,21 +234,21 @@
 
                 console.log(sum4, avgPrimera4);
 
-               
+
 
                 console.log(Math.round(avgPrimera));
                 console.log(Math.round(avgPrimera2));
                 console.log(Math.round(avgPrimera3));
                 console.log(Math.round(avgPrimera4));
 
-                
+
 
                 const data = {
                     avgPrimera: Math.round(avgPrimera),
                     avgPrimera2: Math.round(avgPrimera2),
                     avgPrimera3: Math.round(avgPrimera3),
                     avgPrimera4: Math.round(avgPrimera4),
-            
+
                 };
 
 
@@ -254,7 +256,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                       
+
                     },
                     body: JSON.stringify(data)
                 })
@@ -275,7 +277,7 @@
         });
     });
 });
-        
+
 
 
     </script>

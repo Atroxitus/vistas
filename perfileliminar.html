@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/perfileliminar.css">
+    <title>Borrar Perfil</title>
+    <style>
+        /* Estilos CSS aquí */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Borrar Perfil</h1>
+    <div class="form-group">
+        <label for="">ingresar el correo que tienes registrado.</label>
+        <label for="email">Correo electrónico:</label>
+        <input type="text" id="email" name="email" placeholder="Correo electrónico">
+    </div>
+    <div class="form-group">
+        <button class="btn" onclick="borrarPerfil()">Borrar Perfil</button>
+    </div>
+</div>
+
+<script>
+    async function borrarPerfil() {
+        try {
+            const email = document.getElementById('email').value;
+
+            const response = await fetch(`http://localhost:3000/usuarios/${email}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                console.log('Perfil eliminado exitosamente');
+                // Puedes redirigir a otra página, mostrar un mensaje de éxito, etc.
+            } else {
+                console.error('Error al borrar perfil:', response.status);
+                // Manejar el error de acuerdo a tu aplicación
+            }
+        } catch (error) {
+            console.error('Error al borrar perfil:', error);
+            // Manejar el error de acuerdo a tu aplicación
+        }
+    }
+</script>
+
+</body>
+</html>
