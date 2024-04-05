@@ -3,19 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/login.css">
   <title>Iniciar Sesión</title>
 </head>
 <body>
-  <h1>Iniciar Sesión</h1>
-  <form id="loginForm">
-    <label for="usuario">Correo Electrónico:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" id="contrasena" name="contrasena" required>
-    <br>
-    <button type="submit">Iniciar Sesión</button>
-  </form>
+  <div class="container">
+    <h1>Iniciar Sesión</h1>
+    <form id="loginForm" class="mt-4">
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña:</label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </form>
+    <p class="link">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a>.</p>
+  </div>
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
@@ -34,8 +40,14 @@
         });
 
         if (response.ok) {
+          const responseData = await response.json();
+          const token = responseData.token; // O algún otro identificador
+
+          // Almacenar el token o identificador en el almacenamiento local
+          localStorage.setItem('token', token);
+
           // Redirigir al usuario al perfil.html
-          window.location.href = "";
+          window.location.href = "envio.html";
         } else {
           const errorMessage = await response.text();
           alert(errorMessage);
@@ -48,3 +60,4 @@
   </script>
 </body>
 </html>
+

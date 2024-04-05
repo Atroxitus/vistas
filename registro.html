@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/registro.css">
+    <title>Registrar</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Registro de Empresas</h3>
+        <form id="reg" method="post">
+    
+            <label for="username">usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+    
+        <div>
+            <label for="password">Contraseña:</label>
+            <button class="mostrarpass" type="button" id="toggle-password"></button>
+            <input type="password" id="contrasena" name="contrasena" required>
+        </div>
+
+            <br>
+            <button type="submit">Registrar Empresa</button>
+        </form>
+       
+    </div> 
+</body>
+</html>
+<script>
+    document.getElementById('reg').addEventListener('submit',async function(event){
+        event.preventDefault(); //
+
+        const usuario = document.getElementById('usuario').value;
+        const email = document.getElementById('email').value;
+        const contrasena = document.getElementById('contrasena').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/usuarios', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ usuario, email, contrasena })
+            });
+    
+            if (response.ok) {
+              // Redirigir al usuario al login.html
+              window.location.href = "login.html";
+            } else {
+              const errorMessage = await response.text();
+              alert(errorMessage);
+            }
+          } catch (error) {
+            console.error("Error al registrarse", error);
+            alert("Error al registrarse. Por favor, intenta nuevamente.");
+          }
+        });
+</script>
+<script>
+    const togglePasswordButton = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('contrasena');
+
+    togglePasswordButton.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordButton.textContent = 'Ocultar Contraseña';
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordButton.textContent = 'Mostrar Contraseña';
+        }
+    });
+</script>
+
+
+    

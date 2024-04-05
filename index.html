@@ -1,187 +1,279 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnoEmp - Plataforma de Digitalización Empresarial</title>
-    <link rel="stylesheet" href="style2.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Ollie landing page.">
+    <meta name="author" content="Devcrud">
+    <title>InnoEmp trasformación digital al alcance de tus manos</title>
 
-    <header>
-        <h1>InnoEmp</h1>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.css">
+
+    <!-- Bootstrap + Ollie main styles -->
+	<link rel="stylesheet" href="./css/ollie.css">
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <nav id="scrollspy" class="navbar navbar-light bg-light navbar-expand-lg fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="/img/brand.svg" alt="" class="brand-img"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Ingresar</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownServicios" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Servicios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownServicios">
-                            <a href="index2.html" class="dropdown-item" href="#">Automatización</a>
-                            <a class="dropdown-item" href="#">Gestión de Documentos</a>
-                            <!-- Agrega más opciones según sea necesario -->
-                        </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Consulta</a>
+                        <a class="nav-link" href="#about">Sobre Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./contactos.html">Contáctanos</a>
+                        <a class="nav-link" href="#contact">Contáctanos</a>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <a class="nav-link btn btn-primary" href="login.html">Ingresar</a>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
+
+
+    <header id="home" class="header">
+        <div class="overlay"></div>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">  
+            <div class="container">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="carousel-title">Transformamos<br> Tu negocio a la era digital.</h1>
+                            <button class="btn btn-primary btn-rounded">Quiero saber más</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="carousel-title">Toda tu Empresa <br> En un solo lugar</h1>
+                            <button class="btn btn-primary btn-rounded">Quiero saber más</button>
+                          </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="carousel-title">máximo <br> rendimiento asegurado</h1>
+                            <button class="btn btn-primary btn-rounded">Quiero saber más</button>
+                          </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        <div class="infos container mb-4 mb-md-2">
+            <div class="title">
+                <h6 class="subtitle font-weight-normal">InnoEmp</h6>
+                <h5>Una plataforma líder en la digitalización empresarial</h5>
+                <p class="font-small">comprometidos en transformar los negocios tradicionales hacia la era digital.</p>
+            </div>
+            <div class="socials text-right">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <a class="d-block subtitle"><i class="ti-microphone pr-2"></i> (+57) 3015982365</a>
+                        <a class="d-block subtitle"><i class="ti-email pr-2"></i>aprendiz@sena.edu.com</a>
+                    </div>
+                    <div class="col">
+                        <h6 class="subtitle font-weight-normal mb-2">Redes Sociales</h6>
+                        <div class="social-links">
+                            <a href="javascript:void(0)" class="link pr-1"><i class="ti-facebook"></i></a>
+                            <a href="javascript:void(0)" class="link pr-1"><i class="ti-twitter-alt"></i></a>
+                            <a href="javascript:void(0)" class="link pr-1"><i class="ti-pinterest-alt"></i></a>
+                            <a href="javascript:void(0)" class="link pr-1"><i class="ti-instagram"></i></a>
+                            <a href="javascript:void(0)" class="link pr-1"><i class="ti-rss"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <h1>Bienvenido a la Plataforma de Digitalización Empresarial</h1>
-            <p>Transformamos tu negocio a la era digital.</p>
-            <a href="#" class="btn">Descubre más</a>
-            <a href="./index2.html" class="btn">Quiero digitalizar mi empresa</a>
+    <section class="section" id="about">
 
+        <div class="container">
 
+            <div class="row align-items-center mr-auto">
+                <div class="col-md-4">
+                    <h6 class="xs-font mb-0">comprendemos las necesidades únicas de cada cliente.</h6>
+                    <h3 class="section-title">Sobre Nosotros</h3>
+                    <p>InnoEmp es la vanguardia en soluciones integrales de digitalización para empresas de todos 
+                        los tamaños y sectores. Nuestra firma está arraigada en la premisa de la innovación constante
+                         y la excelencia en el servicio al cliente. Nos dedicamos apasionadamente a guiar a las 
+                         empresas hacia la transformación digital, ofreciendo un conjunto diverso de servicios que 
+                         abarcan desde la automatización de procesos hasta la gestión de datos, el desarrollo 
+                         de aplicaciones personalizadas y la consultoría estratégica.
+                    </p>
 
-        </section>
-
-        <section id="features">
-            <h2>Características Principales</h2>
-            <div class="feature">
-                <h3>Automatización de Procesos</h3>
-                <p>Optimiza y agiliza tus operaciones con nuestra potente automatización de procesos.</p>
-            </div>
-            <div class="feature">
-                <h3>Gestión de Documentos</h3>
-                <p>Organiza y accede fácilmente a tus documentos digitales desde cualquier lugar.</p>
-            </div>
-            <!-- Agrega más características según sea necesario -->
-        </section>
-    </main>
-
-    <footer>
-        <!-- Footer -->
-        <footer class="text-center text-lg-start bg-body-tertiary text-muted">
-          <!-- Section: Social media -->
-          <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-            <!-- Left -->
-            <div class="me-5 d-none d-lg-block">
-              <span>Conectate con nuestras redes sociales:</span>
-            </div>
-            <!-- Left -->
-
-            <!-- Right -->
-            <div>
-              <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="" class="me-4 text-reset">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-            <!-- Right -->
-          </section>
-          <!-- Section: Social media -->
-
-          <!-- Section: Links  -->
-          <section class="">
-            <div class="container text-center text-md-start mt-5">
-              <!-- Grid row -->
-              <div class="row mt-3">
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                  <!-- Content -->
-                  <h6 class="text-uppercase fw-bold mb-4">
-                    <i class="fas fa-gem me-3"></i>InnoEmp
-                  </h6>
-                  <p>
-                    Transformamos tu negocio en la era digital 
-                  </p>
+                    <a href="javascript:void(0)">Leer más...</a>
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                  <!-- Links -->
-                  <h6 class="text-uppercase fw-bold mb-4">
-                    Products
-                  </h6>
-                  <p>
-                    <a href="#!" class="text-reset">Digitalizacion</a>
-                  </p>
-                  
+                <div class="col-sm-6 col-md-4 ml-auto">
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-calendar"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">Gestiona tus fechas</h4>
+                            <p>Personaliza tu calendario a tu gusto</p>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-face-smile"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">Incrementa tus clientes</h4>
+                            <p>Atrae y retén clientes con estrategias efectivas.</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                  <!-- Links -->
-                  <h6 class="text-uppercase fw-bold mb-4">
-                    Useful links
-                  </h6>
-                  <p>
-                    <a href="#!" class="text-reset">Precios</a>
-                  </p>
-                  
-                  
-                  <p>
-                    <a href="#!" class="text-reset">Ayuda</a>
-                  </p>
+                <div class="col-sm-6 col-md-4">
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-star"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">3434+</h4>
+                            <p>Avanza constantemente hacia tus objetivos de crecimiento.</p>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-user"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">Colaboración interna eficaz.</h4>
+                            <p>Fomenta la comunicación y colaboración interna efectiva.</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- Grid column -->
+             </div>
+        </div>
+    </section>
 
-                <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                  <!-- Links -->
-                  <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                  <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-                  <p>
-                    <i class="fas fa-envelope me-3"></i>
-                    info@example.com
-                  </p>
-                  <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                  <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+    <section class="section" id="blog">
+
+        <div class="container mb-3">
+            <h6 class="xs-font mb-0">Estás a unos pocos pasos.</h6>
+            <h3 class="section-title mb-5">De mejorar tu experiencia de negocio.</h3>
+
+            <div class="blog-wrapper">
+                <div class="img-wrapper">
+                    <img src="./img/img-1.jpg">
+                    <div class="date-container">
+                        <h6 class="day">29</h6>
+                        <h6 class="mun">Jun</h6> 
+                    </div>
                 </div>
-                <!-- Grid column -->
-              </div>
-              <!-- Grid row -->
+                <div class="txt-wrapper">
+                    <h4 class="blog-title">La Importancia de la Transformación Digital en las Empresas</h4>
+                    <p>
+                        La transformación digital es un proceso fundamental para el crecimiento y la supervivencia en el mundo empresarial moderno.
+                        Empresas como la tuya pueden beneficiarse enormemente al adoptar tecnologías digitales y adaptarse a los cambios del mercado.
+                        Al digitalizar tus procesos, puedes mejorar la eficiencia, reducir costos y ofrecer mejores productos y servicios a tus clientes.
+                        Además, la transformación digital te permite estar a la vanguardia de la innovación y mantenerte competitivo en un entorno empresarial en constante evolución.
+                    </p>
+                
+                    <a href="#" class="badge badge-info">Tecnología Empresarial</a>
+                
+                    <h6 class="blog-footer">
+                        <a href="javascript:void(0)"><i class="ti-user"></i> Admin </a> |
+                        <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 213 </a> |
+                        <a href="javascript:void(0)"><i class="ti-comments"></i> 123</a>
+                    </h6>
+                </div>
+                
             </div>
-          </section>
-          <!-- Section: Links  -->
+        </div>
+    </section>
 
-          <!-- Copyright -->
-          <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2021 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-          </div>
-          <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
-    </footer>
+    <section id="contact" class="section pb-0">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <div class="container">
+            <h6 class="xs-font mb-0">Todo lo que necesitas a un click de distancia.</h6>
+            <h3 class="section-title mb-5">Contáctanos</h3>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-8 col-lg-7">
+
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <input type="text" class="form-control" placeholder="Nombre">
+                            </div>
+                            <div class="col form-group">
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Escribe tu Mensaje"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block" value="Enviar Mensaje">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 d-none d-md-block order-1">
+                    <ul class="list">
+                        <li class="list-head">
+                            <h6>INFORMACIÓN DE CONTACTO</h6>
+                        </li>
+                        <li class="list-body">
+                            <p class="py-2">Contáctenos y nos comunicaremos con usted dentro de las próximas 24 horas.</p>
+                            <p class="py-2"><i class="ti-location-pin"></i> Dos cuadras más allá del palito de mango</p>
+                            <p class="py-2"><i class="ti-email"></i> aprendiz@sena.edu.com</p>
+                            <p class="py-2"><i class="ti-microphone"></i> (+57) 3015982365</p>
+
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+
+            <footer class="footer mt-5 border-top">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-6 text-center text-md-left">
+                        <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a target="_blank" href="http://www.devcrud.com">InnoEmp</a></p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-right">
+                        <div class="social-links">
+                            <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-twitter-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
+                        </div>
+                    </div>
+                </div> 
+            </footer>
+        </div>
+    </section>
+	
+	<!-- core  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    
+    <!-- Owl carousel  -->
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.js"></script>
+
+
+    <!-- Ollie js -->
+    <script src="./js/ollie.js"></script>
 
 </body>
 </html>
-

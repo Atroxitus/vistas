@@ -1,0 +1,93 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: #fff;
+    overflow-x: hidden; /* Evita la barra de desplazamiento horizontal */
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+/* Estilos para la caja de datos */
+.nivel-madurez {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s;
+}
+
+.nivel-madurez:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para los círculos y texto */
+.opcion {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    margin-bottom: 10px;
+}
+
+.numero {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-right: 20px; /* Espacio entre el círculo y el texto */
+}
+
+.descripcion {
+    max-width: calc(100% - 70px); /* Ajusta el ancho del texto */
+}
+
+
+/* Colores de fondo para los números */
+#cero {
+    background-color: #ff4d4d;
+}
+
+#uno {
+    background-color: #ff9933;
+}
+
+#dos {
+    background-color: #ffff66;
+}
+
+#tres {
+    background-color: #66ff66;
+}
+
+#cuatro {
+    background-color: #66b3ff;
+}
+
+/* Estilos para los enlaces */
+.btn-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-link:hover {
+    background-color: #16a085;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Actualizar Usuario</h1>
+    <div class="form-group">
+        <label for="nombre">Nombre de usuario:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre de usuario">
+    </div>
+    <div class="form-group">
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+    </div>
+    <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input type="text" id="email" name="email" placeholder="Correo electrónico">
+    </div>
+    <div class="form-group">
+        <button class="btn" onclick="actualizarUsuario()">Actualizar</button>
+    </div>
+</div>
+<script>
+    function deleteAccount() {
+        // Aquí puedes agregar la lógica para eliminar la cuenta del usuario
+        alert("Cuenta borrada exitosamente.");
+    }
+
+    async function actualizarUsuario(req, res) {
+        try {
+            const usuario = document.getElementById('nombre').value;
+            
+            const email = document.getElementById('email').value;
+          
+          // Realizar la solicitud Fetch
+          const response = await fetch(`http://localhost:3000/usuarios/${email} `, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              usuario: usuario,
+              email: email
+            })
+          });
+          
+          // Verificar el estado de la respuesta
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data); // Puedes manejar la respuesta según tu lógica
+            // Actualizar la interfaz de usuario u otras acciones necesarias
+          } else {
+            console.error('Error al actualizar usuario:', response.status);
+            // Manejar el error de acuerdo a tu aplicación
+          }
+        } catch (error) {
+          console.error('Error al actualizar usuario:', error);
+          // Manejar el error de acuerdo a tu aplicación
+        }
+      }
+      
+</script>
+
+</body>
+</html>
