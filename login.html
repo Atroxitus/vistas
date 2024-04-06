@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/login.css">
   <title>Iniciar Sesión</title>
 </head>
+
 <body>
   <div class="container">
     <h1>Iniciar Sesión</h1>
@@ -24,40 +26,40 @@
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    if (localStorage.getItem('userId')) {
+      window.location.href = "/index.html";
+    }
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
       event.preventDefault(); // Evita el envío del formulario por defecto
-      
+
       const email = document.getElementById('email').value;
       const contrasena = document.getElementById('contrasena').value;
-      
-      try {
-        const response = await fetch('http://localhost:3000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, contrasena })
-        });
 
-        if (response.ok) {
-          const responseData = await response.json();
+      // ♣ 
+      fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, contrasena })
+      }).then((res) => {
+        return res.json();
+      }).then((response) => {
+        if (response.res = 'ok') {
+          const responseData = response;
           const token = responseData.token; // O algún otro identificador
-
           // Almacenar el token o identificador en el almacenamiento local
-          localStorage.setItem('token', token);
-
+          // localStorage.setItem('token', token);
+          localStorage.setItem('userId', String(response.data));
           // Redirigir al usuario al perfil.html
-          window.location.href = "envio.html";
-        } else {
-          const errorMessage = await response.text();
-          alert(errorMessage);
+          window.location.href = "/envio.html";
         }
-      } catch (error) {
+      }).catch((error) => {
         console.error("Error al iniciar sesión:", error);
         alert("Error al iniciar sesión. Por favor, intenta nuevamente.");
-      }
+      });
     });
   </script>
 </body>
-</html>
 
+</html>

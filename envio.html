@@ -201,7 +201,7 @@
                 let sum = arraicito.reduce((previous, current) => current += previous);
                 let avgPrimera = sum / onlyType.length;
 
-                console.log(sum, avgPrimera);
+                // console.log(sum, avgPrimera);
 
                 const onlyType2 = allItems.filter((a) => a.type.includes('segunda'));
                 const arraicito2 = [];
@@ -211,7 +211,7 @@
                 let sum2 = arraicito2.reduce((previous, current) => current += previous);
                 let avgPrimera2 = sum2 / onlyType2.length;
 
-                console.log(sum2, avgPrimera2);
+                // console.log(sum2, avgPrimera2);
 
                 const onlyType3 = allItems.filter((a) => a.type.includes('tercera'));
                 const arraicito3 = [];
@@ -222,7 +222,7 @@
                 let sum3 = arraicito3.reduce((previous, current) => current += previous);
                 let avgPrimera3 = sum3 / onlyType3.length;
 
-                console.log(sum3, avgPrimera3);
+                // ♣ console.log(sum3, avgPrimera3);
 
                 const onlyType4 = allItems.filter((a) => a.type.includes('cuarta'));
                 const arraicito4 = [];
@@ -232,7 +232,7 @@
                 let sum4 = arraicito4.reduce((previous, current) => current += previous);
                 let avgPrimera4 = sum4 / onlyType4.length;
 
-                console.log(sum4, avgPrimera4);
+                // console.log(sum4, avgPrimera4);
 
 
 
@@ -250,7 +250,7 @@
                     avgPrimera4: Math.round(avgPrimera4),
                 };
 
-
+                // ♣
                 fetch('http://localhost:3000/puntuacion', {
                     method: 'POST',
                     headers: {
@@ -259,24 +259,24 @@
                     },
                     body: JSON.stringify(data)
                 })
-                .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Encuesta enviada correctamente:', data);
-            window.location.href = "/grafico.html"; 
-            localStorage.getItem('idpipi', idp);
-            // Aquí puedes realizar cualquier acción adicional después de enviar la encuesta
-        })
-        .catch(error => {
-            console.error('Error al enviar la encuesta:', error);
-            // Manejo de errores
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Encuesta enviada correctamente:', data);
+                        localStorage.setItem('idpi', data.data.idp);
+                        window.location.href = "/grafico.html";
+                        // Aquí puedes realizar cualquier acción adicional después de enviar la encuesta
+                    })
+                    .catch(error => {
+                        console.error('Error al enviar la encuesta:', error);
+                        // Manejo de errores
+                    });
+            });
         });
-    });
-});
 
 
 

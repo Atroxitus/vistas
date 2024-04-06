@@ -59,13 +59,13 @@ async function crearTablas() {
       )
     `);
 
-    
+
 
     console.log("Tablas creadas correctamente");
   } catch (error) {
     console.error("Error al crear las tablas:", error);
   }
-  
+
 }
 
 // Llamada a la función de creación de tablas al iniciar el servidor
@@ -83,13 +83,15 @@ app.delete("/usuarios/:email", eliminarUsuario);
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
+// ♣ 
 async function crearUsuario(req, res) {
   try {
     const pool = new Pool({
       connectionString,
     });
     const { usuario, email, contrasena, id_encuesta } = req.body;
-    if (!usuario || !email || !contrasena ) {
+    if (!usuario || !email || !contrasena) {
       return res.status(400).send("Missing required fields");
     }
 
@@ -108,14 +110,11 @@ async function crearUsuario(req, res) {
     const result = await client.query(
       `INSERT INTO usuarios (usuario, email, contrasena) 
        VALUES ($1, $2, $3) RETURNING *`,
-      [usuario, email, hashedPassword, ] // Usar la contraseña hasheada en lugar de la original
+      [usuario, email, hashedPassword,] // Usar la contraseña hasheada en lugar de la original
     );
     const newUser = result.rows[0];
-
     // Redirigir al usuario a la página de perfil
-    res.json({"response": "ok"});
-
-
+    res.json({ "response": "ok", ms: "Credenciales inválidas", data: newUser });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error registering user");
@@ -127,47 +126,47 @@ async function crearUsuario(req, res) {
 // Ruta para iniciar sesión
 app.post("/login", iniciarSesion);
 
+// async function iniciarSesion(req, res) {
+//   try {
+//     const { email, contrasena } = req.body;
+//     if (!email || !contrasena) {
+//       return res.status(400).send("Correo y contraseña son requeridos");
+//     }
+
+//     const result = await pool.query(
+//       "SELECT * FROM usuarios WHERE email = $1 AND contrasena = $2",
+//       [email, contrasena]
+//     );
+//     // Realizar la autenticación y obtener el token
+//     const token = await autenticarUsuario(email, contrasena);
+//     if (!token) {
+//       return res.status(401).json({ res: 'ok', ms: "Credenciales inválidas", data: result.rows[0] });
+//     }
+
+//     if (result.rows.length === 0) {
+//       return res.status(401).send("Credenciales inválidas");
+//     }
+
+//     // Enviar el token como respuesta
+//     res.json({ token });
+
+
+//     // Si las credenciales son válidas, redirige al usuario al perfil.html
+//     res.json({ "response": "ok" });
+
+//   } catch (error) {
+//     console.error("Error al iniciar sesión:", error);
+//     res.status(500).send("Error al iniciar sesión");
+//   }
+// }
+//comparar contraseña hasheada para que el login sea exitoso
 async function iniciarSesion(req, res) {
-  try {
-    const { email, contrasena } = req.body;
-    if (!email || !contrasena) {
-      return res.status(400).send("Correo y contraseña son requeridos");
-    }
-
-    const result = await pool.query(
-      "SELECT * FROM usuarios WHERE email = $1 AND contrasena = $2",
-      [email, contrasena]
-    );
-     // Realizar la autenticación y obtener el token
-     const token = await autenticarUsuario(email, contrasena);
-     if (!token) {
-      return res.status(401).send("Credenciales inválidas");
-    }
-
-    if (result.rows.length === 0) {
-      return res.status(401).send("Credenciales inválidas");
-    }
-    
-    // Enviar el token como respuesta
-    res.json({ token });
-
-
-    // Si las credenciales son válidas, redirige al usuario al perfil.html
-    res.json({"response": "ok"});
-    
-  } catch (error) {
-    console.error("Error al iniciar sesión:", error);
-    res.status(500).send("Error al iniciar sesión");
-  }
-}
-  //comparar contraseña hasheada para que el login sea exitoso
-  async function iniciarSesion(req, res) {
   try {
     const { email, contrasena } = req.body;
 
     // Buscar el usuario por su correo electrónico en la base de datos
     const user = await pool.query("SELECT * FROM usuarios WHERE email = $1", [email]);
-    
+
     // Si el usuario no existe
     if (user.rows.length === 0) {
       return res.status(401).send("Usuario no encontrado");
@@ -183,13 +182,15 @@ async function iniciarSesion(req, res) {
     }
 
     // Si las contraseñas coinciden, el usuario está autenticado
-    res.json({"response": "Usuario autenticado"});
+    return res.status(201).json({ res: 'ok', ms: "Credenciales inválidas", data: user.rows[0].email });
 
   } catch (err) {
     console.error(err);
     res.status(500).send("Error de autenticación");
   }
 }
+
+
 app.get('/logout', cerrarSesion);
 // Ruta para cerrar sesión
 function cerrarSesion(req, res) {
@@ -233,7 +234,7 @@ async function actualizarUsuario(req, res) {
     const { email } = req.params;
     const { usuario } = req.body;
 
-    
+
     const result = await pool.query(
       "UPDATE usuarios SET   usuario = $1  WHERE email = $2 RETURNING *",
       [usuario, email]
@@ -273,25 +274,25 @@ app.delete("/puntuacion/:idp", eliminarDato);
 
 app.post('/puntuacion', async (req, res) => {
   const datosRecibidos = req.body; // Obtén los datos del cuerpo de la solicitud
-  
+
   try {
-    
     const result = await pool.query(
-       "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4)  RETURNING *",
+      "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4)  RETURNING *",
       [datosRecibidos.avgPrimera, datosRecibidos.avgPrimera2, datosRecibidos.avgPrimera3, datosRecibidos.avgPrimera4]
     );
-  
+
+
     console.log("Datos insertados en la base de datos:", result.rows[0]);
-    res.status(200).json("Datos recibidos y procesados correctamente");
-    
+    res.status(200).json({ ms: "Datos recibidos y procesados correctamente", data: result.rows[0] });
+
   } catch (error) {
     console.error("Error al procesar los datos:", error);
     res.status(500).send("Error al procesar los datos");
   }
- 
-
 });
- 
+
+
+
 
 app.get('/puntuacionnn/:idp', async (req, res) => {
   const idp = req.params.idp;
@@ -314,16 +315,16 @@ app.get('/puntuacionnn/:idp', async (req, res) => {
   }
 });
 
-  
-  
+
+
 
 
 async function crearDato(req, res) {
   try {
-    const {personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital } = req.body;
+    const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital } = req.body;
     const result = await pool.query(
       "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4) RETURNING *",
-      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital]
+      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital]
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
