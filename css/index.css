@@ -1,154 +1,69 @@
-
-/* Reset básico */
-body, html {
-    background: linear-gradient(to right, #141e30, #243b55);
+body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif; /* Se recomienda una fuente moderna y legible */
-}
-
-/* Estilos generales para la barra de navegación */
-
-/* Media query para ajustar los estilos en dispositivos más pequeños */
-@media (max-width: 768px) {
-    .navbar-nav {
-        margin-right: 0; /* Alinear los elementos del menú al centro en dispositivos pequeños */
-    }
+    background: linear-gradient(to right, #141e30, #243b55);
+    
+    
+    
 }
 
 
-/* Estilo para el header */
-.header {
-    position: relative;
-    height: 100vh;
-    background: url('path/to/your/background-image.jpg') center center/cover;
+
+  
+  
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #000;
+}
+
+.portada{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-weight: bold;
+    background-color: #5a0f19;}
+
+.portada h1{
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    font-family: initial;}
+
+.portada span {
+    text-align: center;
+}
+
+ul li{
+    display: inline-block;
+    padding: 0px 10px;
+    font-family: 'calibri';
+}
+
+a{
+    color: rgb(250, 248, 248);
+    text-decoration: none;
+}
+
+a:hover{
+    color: #ebdacc;
+}
+
+
+.inicio{
+    display: flex; /* Utiliza un contenedor flex para alinear los elementos */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: flex-start; /* Alínea los elementos hacia la parte superior */
+}
+
+.section{
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
+    position: relative;
 }
-
-.carousel-title {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.btn-rounded {
-    border-radius: 30px;
-    padding: 12px 30px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-right: 15px;
-    transition: all 0.3s ease;
-    background-color: #007bff;
-    border: 2px solid #007bff;
-    color: #fff;
-}
-
-.btn-rounded:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    color: #fff;
-    transform: translateY(-3px);
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .carousel-title {
-        font-size: 2.5rem;
-    }
-
-    .btn-rounded {
-        padding: 10px 25px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Estilo para los botones dentro del carousel-caption */
-.carousel-caption .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-}
-
-.carousel-caption .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .carousel-title {
-        font-size: 2.5rem;
-    }
-
-    .btn-rounded {
-        padding: 10px 25px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Estilo para la sección de información */
-.infos {
-    text-align: center;
-    padding: 50px 0;
-}
-
-.title h5 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.font-small {
-    font-size: 0.9rem;
-    color: #6c757d;
-}
-
-.subtitle {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: #6c757d;
-}
-
-.social-links a {
-    color: #007bff; /* Color de los íconos de redes sociales */
-    margin-right: 10px;
-    font-size: 1.5rem;
-}
-
-.social-links a:hover {
-    color: #0056b3; /* Color al pasar el ratón */
-}
-
-/* Estilo para el pie de página (si es necesario) */
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #f8f9fa;
-    color: #6c757d;
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .navbar-nav.ml-auto {
-        margin-top: 15px;
-    }
-
-    .navbar-toggler {
-        border-color: #007bff;
-    }
-}
-/* Estilos generales para el nav */
-.navbar {
-    background-color: #fff; /* Color de fondo */
-    border-bottom: 1px solid #ddd; /* Borde inferior */
-  }
-  
-  .container {
-    max-width: 1200px; /* Ancho máximo */
-    margin: 0 auto; /* Centrar */
-  }
-  
-  
