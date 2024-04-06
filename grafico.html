@@ -9,8 +9,6 @@
 </head>
 <body>
   <div class="container">
-    <p>nombre:</p>
-    <p>emai:</p>
     <button onclick="mostrarPrompt()">Ingresar IDP</button>
     <canvas id="myChart"></canvas>
   </div>
@@ -69,6 +67,12 @@
       if (idp !== null) { // Si el usuario no cancela el prompt
         obtenerDatos(idp);
       }
+    }
+
+    // Obtener el IDP del localStorage y mostrarlo en una alerta
+    const idpGuardado = localStorage.getItem('idpi');
+    if (idpGuardado) {
+      alert('Tu IDP es: ' + idpGuardado);
     }
   </script>
 </body>

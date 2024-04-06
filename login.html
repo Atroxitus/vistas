@@ -10,6 +10,7 @@
 
 <body>
   <div class="container">
+    <img src="./img/logo1.png">
     <h1>Iniciar Sesión</h1>
     <form id="loginForm" class="mt-4">
       <div class="mb-3">
@@ -27,7 +28,7 @@
 
   <script>
     if (localStorage.getItem('userId')) {
-      window.location.href = "/index.html";
+    
     }
     document.getElementById('loginForm').addEventListener('submit', async function (event) {
       event.preventDefault(); // Evita el envío del formulario por defecto
@@ -49,7 +50,7 @@
           const responseData = response;
           const token = responseData.token; // O algún otro identificador
           // Almacenar el token o identificador en el almacenamiento local
-          // localStorage.setItem('token', token);
+          
           localStorage.setItem('userId', String(response.data));
           // Redirigir al usuario al perfil.html
           window.location.href = "/envio.html";

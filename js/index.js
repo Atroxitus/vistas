@@ -1,3 +1,4 @@
+//dependecias necesarias para el servidor
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -126,39 +127,7 @@ async function crearUsuario(req, res) {
 // Ruta para iniciar sesión
 app.post("/login", iniciarSesion);
 
-// async function iniciarSesion(req, res) {
-//   try {
-//     const { email, contrasena } = req.body;
-//     if (!email || !contrasena) {
-//       return res.status(400).send("Correo y contraseña son requeridos");
-//     }
 
-//     const result = await pool.query(
-//       "SELECT * FROM usuarios WHERE email = $1 AND contrasena = $2",
-//       [email, contrasena]
-//     );
-//     // Realizar la autenticación y obtener el token
-//     const token = await autenticarUsuario(email, contrasena);
-//     if (!token) {
-//       return res.status(401).json({ res: 'ok', ms: "Credenciales inválidas", data: result.rows[0] });
-//     }
-
-//     if (result.rows.length === 0) {
-//       return res.status(401).send("Credenciales inválidas");
-//     }
-
-//     // Enviar el token como respuesta
-//     res.json({ token });
-
-
-//     // Si las credenciales son válidas, redirige al usuario al perfil.html
-//     res.json({ "response": "ok" });
-
-//   } catch (error) {
-//     console.error("Error al iniciar sesión:", error);
-//     res.status(500).send("Error al iniciar sesión");
-//   }
-// }
 //comparar contraseña hasheada para que el login sea exitoso
 async function iniciarSesion(req, res) {
   try {
@@ -196,7 +165,7 @@ app.get('/logout', cerrarSesion);
 function cerrarSesion(req, res) {
   try {
     // Lógica para cerrar la sesión aquí
-    res.clearCookie("sessionId"); // Reemplaza "sessionId" con el nombre de tu cookie de sesión
+    res.clearCookie("sessionId"); 
     res.redirect('index.html'); // Redirige al usuario a la página de inicio
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
@@ -204,7 +173,7 @@ function cerrarSesion(req, res) {
   }
 }
 
-
+//funcion para obtener los usuarios
 async function obtenerUsuarios(req, res) {
   try {
     const result = await pool.query("SELECT * FROM usuarios");
@@ -214,7 +183,7 @@ async function obtenerUsuarios(req, res) {
     res.status(500).send("Error al obtener usuarios");
   }
 }
-
+//funcion para obtener usuarios por correo
 async function obtenerUsuarioPorId(req, res) {
   try {
     const { email } = req.params;
@@ -229,6 +198,7 @@ async function obtenerUsuarioPorId(req, res) {
     res.status(500).send("Error al obtener usuario por correo");
   }
 }
+//funcion para actualizar los usuarios
 async function actualizarUsuario(req, res) {
   try {
     const { email } = req.params;
@@ -249,7 +219,7 @@ async function actualizarUsuario(req, res) {
     res.status(500).send("Error al actualizar usuario");
   }
 }
-
+//funcion para eliminar usuario
 async function eliminarUsuario(req, res) {
   try {
     const { email } = req.params;
@@ -267,7 +237,7 @@ async function eliminarUsuario(req, res) {
 
 // Funciones controladoras CRUD para puntuacion
 
-// app.post("/puntuacionnn", crearDato);
+
 app.get("/puntuacionn/:idp", obtenerDato);
 app.put("/puntuacion/:idp", actualizarDato);
 app.delete("/puntuacion/:idp", eliminarDato);
@@ -292,7 +262,7 @@ app.post('/puntuacion', async (req, res) => {
 });
 
 
-
+//funcion para obtener puntuacion por idp
 
 app.get('/puntuacionnn/:idp', async (req, res) => {
   const idp = req.params.idp;
@@ -319,20 +289,8 @@ app.get('/puntuacionnn/:idp', async (req, res) => {
 
 
 
-async function crearDato(req, res) {
-  try {
-    const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital } = req.body;
-    const result = await pool.query(
-      "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4) RETURNING *",
-      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (error) {
-    console.error("Error al crear dato:", error);
-    res.status(500).send("Error al crear dato");
-  }
-}
 
+ //funcion para obtener todos los datos de la tabla puntuacion
 async function obtenerDato(req, res) {
   try {
     const { idp } = req.params;
@@ -366,7 +324,7 @@ async function actualizarDato(req, res) {
     res.status(500).send("Error al actualizar evento");
   }
 }
-
+//funcion para eliminar datos por idp
 async function eliminarDato(req, res) {
   try {
     const { idp } = req.params;

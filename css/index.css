@@ -1,69 +1,74 @@
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #141e30, #243b55);
-    
-    
-    
+    color: #fff;
+    padding-top: 20px; /* Ajuste para la barra de navegación fija */
 }
 
-
-
-  
-  
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: #000;
+.navbar {
+    background-color: rgba(248, 249, 250, 0.1); /* Color de fondo semitransparente de la barra de navegación */
+    padding: 5px 10px; /* Ajuste de relleno superior e inferior */
+    border: none; /* Eliminar el borde */
 }
 
-.portada{
+.navbar-brand img {
+    max-height: 40px;
+}
 
+.navbar-nav {
+    margin-left: auto; /* Mover los elementos del menú hacia la derecha */
+}
+
+.nav-item {
+    margin-left: 10px; /* Espacio entre los elementos del menú */
+}
+
+.header {
+    background-image: url('/path/to/your/background/image.jpg'); /* Reemplaza la ruta con la imagen deseada */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-left: 2%;
-    padding-right: 2%;
-    font-weight: bold;
-    background-color: #5a0f19;}
+}
 
-.portada h1{
+.header h1 {
+    font-size: 3rem;
+}
+
+.social-links .link {
     color: #fff;
-    font-size: 40px;
-    text-align: center;
-    font-family: initial;}
-
-.portada span {
-    text-align: center;
+    font-size: 24px;
+    margin-right: 10px;
 }
 
-ul li{
-    display: inline-block;
-    padding: 0px 10px;
-    font-family: 'calibri';
+.container {
+    margin-top: 50px; /* Ajuste para separar el contenido del encabezado */
 }
 
-a{
-    color: rgb(250, 248, 248);
-    text-decoration: none;
+.container p {
+    margin-bottom: 10px;
 }
 
-a:hover{
-    color: #ebdacc;
+.footer {
+    background-color: rgba(248, 249, 250, 0.1); /* Color de fondo semitransparente del pie de página */
+    color: #fff; /* Color del texto del pie de página */
+    padding: 50px 20px; /* Espaciado interior del pie de página */
 }
 
-
-.inicio{
-    display: flex; /* Utiliza un contenedor flex para alinear los elementos */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: flex-start; /* Alínea los elementos hacia la parte superior */
+.footer h5 {
+    font-weight: bold;
+    margin-bottom: 10px; /* Espacio inferior entre el título y el subtítulo */
 }
 
-.section{
-    display: flex;
-    justify-content: center;
-    position: relative;
+.footer p {
+    margin-bottom: 10px; /* Espacio inferior entre los párrafos */
+}
+
+.footer-info {
+    text-align: right; /* Alinear la información a la derecha */
+}
+
+.footer-info p {
+    margin: 5px 0; /* Ajustar el espacio entre los elementos de información */
 }

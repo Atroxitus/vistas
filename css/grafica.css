@@ -1,4 +1,53 @@
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #141e30, #243b55);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    .hidden {
-      display: none;
-    }
+.container {
+  width: 80%; /* Cambiamos el ancho al 80% */
+  max-width: 600px; /* Establecemos un ancho máximo */
+  background-color: rgba(0, 0, 0, 0.4); /* Color de fondo con transparencia */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Alinea el texto al centro */
+}
+
+/* Estilos para el botón */
+button.btn-primary {
+  width: calc(100% - 24px); /* Ajusta el ancho del botón */
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px; /* Añadido para separar el botón del canvas */
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+button.btn-primary:focus {
+  outline: none;
+}
+
+button.btn-primary:active {
+  background-color: #0056b3;
+}
+
+/* Estilos para el canvas */
+canvas#myChart {
+  width: 100%;
+  height: auto;
+}

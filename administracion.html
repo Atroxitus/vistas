@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Usuario</title>
-    <link rel="stylesheet" href="./css/perfileliminar.css">
-    <link rel="stylesheet" href="/css/perfil.css">
-    <style>
-       
-    </style>
+    <title>Actualizar Usuario y Borrar Perfil</title>
+    <link rel="stylesheet" href="./css/administacion.css">
 </head>
 <body>  
 
-<div class="container">
-    <h1>Actualizar nombre de Usuario</h1>
-    <p></p>
-    <div class="form-group">
-        <label for="nombre"> colocar el nuevo nombre de usuario :</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre de usuario">
+<div class="wrapper">
+    <div class="container">
+        <h1>Actualizar nombre de Usuario</h1>
+        <p></p>
+        <div class="form-group">
+            <label for="nombre"> Colocar el nuevo nombre de usuario:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre de usuario">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Colocar el correo que tienes registrado:</label>
+            <input type="text" id="email" name="email" placeholder="Correo electrónico">
+        </div>
+        <div class="form-group">
+            <button class="btn" onclick="actualizarUsuario()">Actualizar</button>
+        </div>
     </div>
-    
-    <div class="form-group">
-        <label for="email">colocar el correo que tienes registrado:</label>
-        <input type="text" id="email" name="email" placeholder="Correo electrónico">
-    </div>
-    <div class="form-group">
-        <button class="btn" onclick="actualizarUsuario()">Actualizar</button>
+
+    <div class="container">
+        <h1>Borrar Perfil</h1>
+        <div class="form-group">
+            <label for="">Ingresar el correo que tienes registrado.</label>
+            <label for="emailDelete">Correo electrónico:</label>
+            <input type="text" id="emailDelete" name="emailDelete" placeholder="Correo electrónico">
+        </div>
+        <div class="form-group">
+            <button class="btn" onclick="borrarPerfil()">Borrar Perfil</button>
+        </div>
     </div>
 </div>
 
-<div class="container">
-    <h1>Borrar Perfil</h1>
-    <div class="form-group">
-        <label for="">ingresar el correo que tienes registrado.</label>
-        <label for="email">Correo electrónico:</label>
-        <input type="text" id="email" name="email" placeholder="Correo electrónico">
-    </div>
-    <div class="form-group">
-        <button class="btn" onclick="borrarPerfil()">Borrar Perfil</button>
-    </div>
-</div>
 <script>
     function deleteAccount() {
         // Aquí puedes agregar la lógica para eliminar la cuenta del usuario
@@ -78,12 +77,11 @@
           // Manejar el error de acuerdo a tu aplicación
         }
       }
-      
 </script>
 <script>
     async function borrarPerfil() {
         try {
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('emailDelete').value;
 
             const response = await fetch(`http://localhost:3000/usuarios/${email}`, {
                 method: 'DELETE',
