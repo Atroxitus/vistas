@@ -1,0 +1,153 @@
+
+/* Reset básico */
+body, html {
+    background: linear-gradient(to right, #141e30, #243b55);
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Se recomienda una fuente moderna y legible */
+}
+
+/* Estilo para el navbar */
+.navbar {
+    background-color: #f8f9fa; /* Fondo del navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.navbar-brand {
+    padding: 0; /* Elimina el relleno predeterminado */
+}
+
+.navbar-nav .nav-link {
+    color: #343a40; /* Color del texto */
+    padding: 8px 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff; /* Color al pasar el ratón */
+}
+
+/* Estilo para el header */
+.header {
+    position: relative;
+    height: 100vh;
+    background: url('path/to/your/background-image.jpg') center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.carousel-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.btn-rounded {
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    background-color: #007bff;
+    border: 2px solid #007bff;
+    color: #fff;
+}
+
+.btn-rounded:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .carousel-title {
+        font-size: 2.5rem;
+    }
+
+    .btn-rounded {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilo para los botones dentro del carousel-caption */
+.carousel-caption .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.carousel-caption .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .carousel-title {
+        font-size: 2.5rem;
+    }
+
+    .btn-rounded {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilo para la sección de información */
+.infos {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.title h5 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.font-small {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #6c757d;
+}
+
+.social-links a {
+    color: #007bff; /* Color de los íconos de redes sociales */
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.social-links a:hover {
+    color: #0056b3; /* Color al pasar el ratón */
+}
+
+/* Estilo para el pie de página (si es necesario) */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar-nav.ml-auto {
+        margin-top: 15px;
+    }
+
+    .navbar-toggler {
+        border-color: #007bff;
+    }
+}

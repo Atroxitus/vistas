@@ -277,12 +277,11 @@ app.post('/puntuacion', async (req, res) => {
   try {
     
     const result = await pool.query(
-      "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4)",
+       "INSERT INTO puntuacion (personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital) VALUES ($1, $2, $3, $4)  RETURNING *",
       [datosRecibidos.avgPrimera, datosRecibidos.avgPrimera2, datosRecibidos.avgPrimera3, datosRecibidos.avgPrimera4]
     );
-    
-
-    console.log("Datos insertados en la base de datos:", result);
+  
+    console.log("Datos insertados en la base de datos:", result.rows[0]);
     res.status(200).json("Datos recibidos y procesados correctamente");
     
   } catch (error) {

@@ -248,7 +248,6 @@
                     avgPrimera2: Math.round(avgPrimera2),
                     avgPrimera3: Math.round(avgPrimera3),
                     avgPrimera4: Math.round(avgPrimera4),
-
                 };
 
 
@@ -268,7 +267,8 @@
         })
         .then(data => {
             console.log('Encuesta enviada correctamente:', data);
-            window.location.href = "grafico.html";
+            window.location.href = "/grafico.html"; 
+            localStorage.setItem('idpipi', idp);
             // Aquí puedes realizar cualquier acción adicional después de enviar la encuesta
         })
         .catch(error => {
