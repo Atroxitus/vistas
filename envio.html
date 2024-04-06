@@ -268,7 +268,7 @@
         .then(data => {
             console.log('Encuesta enviada correctamente:', data);
             window.location.href = "/grafico.html"; 
-            localStorage.setItem('idpipi', idp);
+            localStorage.getItem('idpipi', idp);
             // Aquí puedes realizar cualquier acción adicional después de enviar la encuesta
         })
         .catch(error => {
