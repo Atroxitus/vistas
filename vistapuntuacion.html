@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Puntuación</title>
+</head>
+
+<body>
+    <h1>Tabla de Puntuación</h1>
+    <table id="tablaPuntuacion" border="1">
+        <thead>
+            <tr>
+                <th>Personas y Cultura Digital</th>
+                <th>Procesos de la Entidad</th>
+                <th>Datos Digitales y Analytics</th>
+                <th>Tecnología Digital</th>
+                <th>IDP</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se mostrarán los datos de la tabla -->
+        </tbody>
+    </table>
+
+    <script src=""></script>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabla = document.getElementById("tablaPuntuacion");
+        const tbody = tabla.getElementsByTagName("tbody")[0];
+
+        // Función para cargar los datos de la tabla desde el servidor
+        function cargarDatos() {
+            fetch(`http://localhost:3000/datos-tabla`)
+                .then(response => response.json())
+                .then(datos => {
+                    // Limpiamos la tabla antes de agregar los datos
+                    tbody.innerHTML = "";
+
+                    // Iteramos sobre los datos y los agregamos a la tabla
+                    datos.forEach(fila => {
+                        const tr = document.createElement("tr");
+                        Object.values(fila).forEach(valor => {
+                            const td = document.createElement("td");
+                            td.textContent = valor;
+                            tr.appendChild(td);
+                        });
+
+                        // Agregamos un botón para editar esta fila
+                        const tdEditar = document.createElement("td");
+                        const btnEditar = document.createElement("button");
+                        btnEditar.textContent = "Editar";
+                        btnEditar.addEventListener("click", function () {
+                            editarFila(fila);
+
+                        });
+                        tdEditar.appendChild(btnEditar);
+                        tr.appendChild(tdEditar);
+
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error al cargar los datos:", error);
+                });
+        }
+
+        // Función para editar una fila
+        function editarFila(fila) {
+            // Limpiamos la fila
+            tbody.innerHTML = "";
+
+            // Creamos campos de entrada para cada valor de la fila
+            Object.keys(fila).forEach(key => {
+                const td = document.createElement("td");
+                if (key === "IDP") {
+            td.textContent = fila[key]; // Si es el IDP, solo mostrar el valor sin input
+        } else {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.value = fila[key];
+                td.appendChild(input);
+        }
+                tbody.appendChild(td);
+            });
+
+            // Agregamos un botón de guardar
+            const tdGuardar = document.createElement("td");
+            const btnGuardar = document.createElement("button");
+            btnGuardar.textContent = "Guardar";
+            btnGuardar.addEventListener("click", function () {
+                guardarCambios(fila);
+            });
+            tdGuardar.appendChild(btnGuardar);
+            tbody.appendChild(tdGuardar);
+        }
+
+        // Función para guardar los cambios de la fila editada
+        function guardarCambios(filaOriginal) {
+            // Creamos un objeto para almacenar los nuevos valores
+            const nuevosValores = {};
+            tbody.querySelectorAll("input").forEach(input => {
+                const columna = input.dataset.cellIndex;
+                const valor = input.value;
+                const nombreColumna = Object.keys(filaOriginal)[columna];
+                nuevosValores[nombreColumna] = valor;
+            });
+
+            try {
+                const response = fetch(`http://localhost:3000/actualizar-dato/${filaOriginal}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(nuevosValores)
+                });
+
+                if (response.ok) {
+                    // Si la actualización fue exitosa, recargamos los datos para mostrar la tabla actualizada
+                    cargarDatos();
+                } else if (response.status === 404) {
+                    console.error("Evento no encontrado");
+                    alert("Evento no encontrado. Por favor, verifica los datos e intenta nuevamente.");
+                } else {
+                    console.error("Error al actualizar el dato:", response.statusText);
+                    alert("Error al actualizar el dato. Por favor, intenta nuevamente.");
+                }
+            } catch (error) {
+                console.error("Error al actualizar el dato:", error);
+                alert("Error al actualizar el dato. Por favor, intenta nuevamente.");
+            }
+        }
+
+
+
+
+
+        // Cargamos los datos al cargar la página
+        cargarDatos();
+
+    });
+
+
+
+
+</script>

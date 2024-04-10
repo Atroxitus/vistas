@@ -8,7 +8,7 @@ inputs.forEach(function (input) {
 });
 
 var inputs = document.getElementsByClassName("color");
-
+//condicion para evitar el uso de los numeros en la encuesta
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener("input", function () {
     var valor = parseInt(this.value);

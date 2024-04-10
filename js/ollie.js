@@ -16,7 +16,7 @@ $(document).ready(function(){
     });
 });
 
-// portfolio carousel
+// portfolio 
 $('#owl-portfolio').owlCarousel({
     margin:30,
     dots: false,
@@ -38,7 +38,6 @@ $('#owl-portfolio').owlCarousel({
     }
 });
 
-// testmonial carousel
 $('#owl-testmonial').owlCarousel({
     center: true,
     items:1,

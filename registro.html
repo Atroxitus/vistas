@@ -34,47 +34,4 @@
 </body>
 
 </html>
-<script>
-  document.getElementById('reg').addEventListener('submit', function (event) {
-    event.preventDefault(); //
-
-    const usuario = document.getElementById('usuario').value;
-    const email = document.getElementById('email').value;
-    const contrasena = document.getElementById('contrasena').value;
-
-
-    fetch('http://localhost:3000/usuarios', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ usuario, email, contrasena })
-    }).then((res) => {
-      return res.json();
-    }).then((res) => {
-      if (res.response == 'ok') {
-        // Redirigir al usuario al login.html
-        localStorage.setItem('userId', String(res.data.email));
-        window.location.href = "login.html";
-      } 
-    }).catch((error) => {
-      console.error("Error al registrarse", error);
-      alert("Error al registrarse. Por favor, intenta nuevamente.");
-    });
-
-  });
-</script>
-<script>
-  const togglePasswordButton = document.getElementById('toggle-password');
-  const passwordInput = document.getElementById('contrasena');
-
-  togglePasswordButton.addEventListener('click', function () {
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      togglePasswordButton.textContent = 'Ocultar Contraseña';
-    } else {
-      passwordInput.type = 'password';
-      togglePasswordButton.textContent = 'Mostrar Contraseña';
-    }
-  });
-</script>
+<script src="/js/registro.js"></script>

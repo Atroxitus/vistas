@@ -11,7 +11,8 @@ const { error } = require("console");
 const app = express();
 dotenv.config();
 
-// Configure body-parser middleware
+
+// servicio de archivos estaticos 
 
 app.use('/CSS', express.static(path.join(__dirname, 'CSS')));
 app.use('/JS', express.static(path.join(__dirname, 'JS')));
@@ -20,14 +21,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
+// Configure body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//configuracion del cors
 app.use(cors());
 app.use(morgan('dev'));
+app.use(express.json());
 
 const port = process.env.PORT || 3000;
-
+//conexion a la bd
 const connectionString = process.env.EXTERNAL_POSTGRESQL_RENDER;
 const pool = new Pool({
   connectionString,
@@ -35,9 +38,8 @@ const pool = new Pool({
 
 
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+
+
 
 
 // Creación de las tablas en la base de datos al iniciar el servidor
@@ -239,7 +241,7 @@ async function eliminarUsuario(req, res) {
 
 
 app.get("/puntuacionn/:idp", obtenerDato);
-app.put("/puntuacion/:idp", actualizarDato);
+//app.put("/puntuacion/:idp", actualizarDato);
 app.delete("/puntuacion/:idp", eliminarDato);
 
 app.post('/puntuacion', async (req, res) => {
@@ -298,11 +300,11 @@ async function obtenerDato(req, res) {
     if (result.rows.length > 0) {
       res.status(200).json(result.rows[0]);
     } else {
-      res.status(404).send("Usuario no encontrado");
+      res.status(404).send(" no encontrado");
     }
   } catch (error) {
-    console.error("Error al obtener usuario por correo:", error);
-    res.status(500).send("Error al obtener usuario por correo");
+    console.error("Error ", error);
+    res.status(500).json("Error ");
   }
 }
 
@@ -320,8 +322,8 @@ async function actualizarDato(req, res) {
       res.status(404).send("Evento no encontrado");
     }
   } catch (error) {
-    console.error("Error al actualizar evento:", error);
-    res.status(500).send("Error al actualizar evento");
+    console.error("Error al actualizar :", error);
+    res.status(500).json("Error al actualizar ");
   }
 }
 //funcion para eliminar datos por idp
@@ -340,7 +342,41 @@ async function eliminarDato(req, res) {
   }
 }
 
+app.get("/datos-tabla", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM puntuacion");
 
+    if (result.rows.length > 0) {
+      res.json(result.rows);
+    } else {
+      res.status(404).json({ error: 'No se encontraron datos en la tabla de puntuación' });
+    }
+  } catch (error) {
+    console.error("Error al obtener los datos de la puntuación:", error);
+    res.status(500).json({ error: 'Error al obtener los datos de la puntuación' });
+  }
+});
+//personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital
+
+app.put(`actualizar-dato/:idp`, actualizarDatos);
+async function actualizarDatos(req, res) {
+  try {
+    const { idp } = req.params;
+    const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital} = req.body;
+    const result = await  pool.query(
+      "UPDATE puntuacion SET  personas_y_cultura_digital = $1, procesos_de_la_entidad = $2,datos_digitales_y_analytics = $3,   tecnologia_digital= $4 WHERE idp = $5 RETURNING *",
+      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital, idp]
+    );
+    if (result.rows.length > 0) {
+      res.status(200).json(result.rows[0]);
+    } else {
+      res.status(404).json("Evento no encontrado");
+    }
+  } catch (error) {
+    console.error("Error al actualizar :", error);
+    res.status(500).json("Error al actualizar ");
+  }
+}
 
 
 
