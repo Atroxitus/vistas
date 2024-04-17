@@ -24,8 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Configure body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//configuracion del cors
+//configuracion inicial 
 app.use(cors());
+
 app.use(morgan('dev'));
 app.use(express.json());
 
@@ -93,7 +94,7 @@ async function crearUsuario(req, res) {
     const pool = new Pool({
       connectionString,
     });
-    const { usuario, email, contrasena, id_encuesta } = req.body;
+    const { usuario, email, contrasena } = req.body;
     if (!usuario || !email || !contrasena) {
       return res.status(400).send("Missing required fields");
     }
@@ -116,7 +117,7 @@ async function crearUsuario(req, res) {
       [usuario, email, hashedPassword,] // Usar la contraseña hasheada en lugar de la original
     );
     const newUser = result.rows[0];
-    // Redirigir al usuario a la página de perfil
+  
     res.json({ "response": "ok", ms: "Credenciales inválidas", data: newUser });
   } catch (err) {
     console.error(err);
@@ -242,7 +243,7 @@ async function eliminarUsuario(req, res) {
 
 app.get("/puntuacionn/:idp", obtenerDato);
 //app.put("/puntuacion/:idp", actualizarDato);
-app.delete("/puntuacion/:idp", eliminarDato);
+
 
 app.post('/puntuacion', async (req, res) => {
   const datosRecibidos = req.body; // Obtén los datos del cuerpo de la solicitud
@@ -326,19 +327,20 @@ async function actualizarDato(req, res) {
     res.status(500).json("Error al actualizar ");
   }
 }
+app.delete("/eliminar/:idp", eliminarDato);
 //funcion para eliminar datos por idp
 async function eliminarDato(req, res) {
   try {
     const { idp } = req.params;
-    const result = await pool.query("DELETE  FROM puntuacion WHERE idp = $1", [idp]);
+    const result = await  pool.query("DELETE   FROM puntuacion WHERE idp = $1", [idp]);
     if (result.rowCount > 0) {
-      res.status(204).send();
+      res.status(204).json({success:true});
     } else {
-      res.status(404).send("Evento no encontrado");
+      res.status(404).json({ succes: false, message:"Dato no encontrado"});
     }
   } catch (error) {
-    console.error("Error al eliminar evento:", error);
-    res.status(500).send("Error al eliminar evento");
+    console.error("Error al eliminar Dato:", error);
+    res.status(500).json({ success:false, error: "Error al eliminar "});
   }
 }
 
@@ -356,28 +358,26 @@ app.get("/datos-tabla", async (req, res) => {
     res.status(500).json({ error: 'Error al obtener los datos de la puntuación' });
   }
 });
-//personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital
+
 
 app.put(`actualizar-dato/:idp`, actualizarDatos);
 async function actualizarDatos(req, res) {
+  
   try {
     const { idp } = req.params;
     const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital} = req.body;
     const result = await  pool.query(
       "UPDATE puntuacion SET  personas_y_cultura_digital = $1, procesos_de_la_entidad = $2,datos_digitales_y_analytics = $3,   tecnologia_digital= $4 WHERE idp = $5 RETURNING *",
-      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital, idp]
+      [personas_y_cultura_digital.personas, procesos_de_la_entidad.procesos, datos_digitales_y_analytics.datos,  tecnologia_digital.tecnolgia, idp]
     );
     if (result.rows.length > 0) {
       res.status(200).json(result.rows[0]);
-    } else {
-      res.status(404).json("Evento no encontrado");
     }
   } catch (error) {
     console.error("Error al actualizar :", error);
-    res.status(500).json("Error al actualizar ");
+    res.status(500).send("Error al actualizar ");
   }
 }
-
 
 
 

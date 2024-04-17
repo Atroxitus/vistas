@@ -20,34 +20,104 @@ body {
   text-align: center; /* Alinea el texto al centro */
 }
 
-/* Estilos para el botón */
-button.btn-primary {
-  width: calc(100% - 24px); /* Ajusta el ancho del botón */
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 20px; /* Añadido para separar el botón del canvas */
-}
-
-button.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-button.btn-primary:focus {
-  outline: none;
-}
-
-button.btn-primary:active {
-  background-color: #0056b3;
-}
-
 /* Estilos para el canvas */
 canvas#myChart {
   width: 100%;
   height: auto;
+}
+
+/* Estilos para el botón de mostrar/ocultar resultados */
+.mostrar-resultados-toggle {
+  display: none; /* Ocultamos el botón de forma predeterminada */
+}
+
+.mostrar-resultados-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1abc9c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.mostrar-resultados-label:hover {
+  background-color: #16a085;
+}
+
+/* Cambiar el contenido del botón cuando está marcado */
+.mostrar-resultados-toggle:checked ~ .mostrar-resultados-label::before {
+  content: "Ocultar Resultados";
+  display: none;
+}
+
+/* Mostrar los resultados cuando el botón está marcado */
+.mostrar-resultados-toggle:checked ~ .resultados {
+  display: block;
+}
+
+/* Estilos para la caja de resultados */
+.resultados {
+  display: none; /* Ocultamos los resultados por defecto */
+  margin-top: 20px; /* Añadimos un margen encima de los resultados */
+}
+
+/* Estilos para los círculos y texto de los resultados */
+.opcion {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+  margin-bottom: 20px; /* Añadido más espacio entre cada opción */
+}
+
+.numero {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-right: 20px; /* Espacio entre el círculo y el texto */
+}
+
+.descripcion {
+  max-width: calc(100% - 70px); /* Ajusta el ancho del texto */
+  color: #fff; /* Hace que el texto sea blanco */
+}
+
+/* Colores de fondo para los números */
+#cero {
+  background-color: #ff4d4d;
+}
+
+#uno {
+  background-color: #ff9933;
+}
+
+#dos {
+  background-color: #ffff66;
+}
+
+#tres {
+  background-color: #66ff66;
+}
+
+#cuatro {
+  background-color: #66b3ff;
+}
+
+/* Estilos para los enlaces */
+.btn-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1abc9c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-link:hover {
+  background-color: #16a085;
 }
