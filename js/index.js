@@ -17,7 +17,7 @@ dotenv.config();
 app.use('/CSS', express.static(path.join(__dirname, 'CSS')));
 app.use('/JS', express.static(path.join(__dirname, 'JS')));
 app.use('/IMG', express.static(path.join(__dirname, 'IMG')));
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 
 
@@ -309,24 +309,7 @@ async function obtenerDato(req, res) {
   }
 }
 
-async function actualizarDato(req, res) {
-  try {
-    const { id } = req.params;
-    const { titulo, fecha, descripcion, usuario_id } = req.body;
-    const result = await pool.query(
-      "UPDATE puntuacion SET  = $1,  = $2, = $3,  = $4 WHERE  = $5 RETURNING *",
-      [titulo, fecha, descripcion, usuario_id, id]
-    );
-    if (result.rows.length > 0) {
-      res.status(200).json(result.rows[0]);
-    } else {
-      res.status(404).send("Evento no encontrado");
-    }
-  } catch (error) {
-    console.error("Error al actualizar :", error);
-    res.status(500).json("Error al actualizar ");
-  }
-}
+
 app.delete("/eliminar/:idp", eliminarDato);
 //funcion para eliminar datos por idp
 async function eliminarDato(req, res) {
@@ -359,25 +342,26 @@ app.get("/datos-tabla", async (req, res) => {
   }
 });
 
-
-app.put(`actualizar-dato/:idp`, actualizarDatos);
-async function actualizarDatos(req, res) {
+app.put("/actualizar_dato/:idp", async function actualizarDatoss(req, res) {
   
   try {
     const { idp } = req.params;
     const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital} = req.body;
     const result = await  pool.query(
       "UPDATE puntuacion SET  personas_y_cultura_digital = $1, procesos_de_la_entidad = $2,datos_digitales_y_analytics = $3,   tecnologia_digital= $4 WHERE idp = $5 RETURNING *",
-      [personas_y_cultura_digital.personas, procesos_de_la_entidad.procesos, datos_digitales_y_analytics.datos,  tecnologia_digital.tecnolgia, idp]
+      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital, idp]
     );
     if (result.rows.length > 0) {
       res.status(200).json(result.rows[0]);
     }
+   else {
+    res.status(404).json("No se encontró ningún registro para actualizar con el ID proporcionado");
+  }
   } catch (error) {
     console.error("Error al actualizar :", error);
-    res.status(500).send("Error al actualizar ");
+    res.status(500).send("Error al actualizar "+ error.message);
   }
-}
+})
 
 
 
