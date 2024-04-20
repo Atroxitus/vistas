@@ -117,7 +117,7 @@ async function crearUsuario(req, res) {
       [usuario, email, hashedPassword,] // Usar la contraseña hasheada en lugar de la original
     );
     const newUser = result.rows[0];
-  
+
     res.json({ "response": "ok", ms: "Credenciales inválidas", data: newUser });
   } catch (err) {
     console.error(err);
@@ -168,7 +168,7 @@ app.get('/logout', cerrarSesion);
 function cerrarSesion(req, res) {
   try {
     // Lógica para cerrar la sesión aquí
-    res.clearCookie("sessionId"); 
+    res.clearCookie("sessionId");
     res.redirect('index.html'); // Redirige al usuario a la página de inicio
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
@@ -293,7 +293,7 @@ app.get('/puntuacionnn/:idp', async (req, res) => {
 
 
 
- //funcion para obtener todos los datos de la tabla puntuacion
+//funcion para obtener todos los datos de la tabla puntuacion
 async function obtenerDato(req, res) {
   try {
     const { idp } = req.params;
@@ -315,19 +315,19 @@ app.delete("/eliminar/:idp", eliminarDato);
 async function eliminarDato(req, res) {
   try {
     const { idp } = req.params;
-    const result = await  pool.query("DELETE   FROM puntuacion WHERE idp = $1", [idp]);
+    const result = await pool.query("DELETE   FROM puntuacion WHERE idp = $1", [idp]);
     if (result.rowCount > 0) {
-      res.status(204).json({success:true});
+      res.status(204).json({ success: true });
     } else {
-      res.status(404).json({ succes: false, message:"Dato no encontrado"});
+      res.status(404).json({ succes: false, message: "Dato no encontrado" });
     }
   } catch (error) {
     console.error("Error al eliminar Dato:", error);
-    res.status(500).json({ success:false, error: "Error al eliminar "});
+    res.status(500).json({ success: false, error: "Error al eliminar " });
   }
 }
 
-app.get("/datos-tabla", async (req, res) => {
+app.get("/datos_tabla", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM puntuacion");
 
@@ -343,25 +343,33 @@ app.get("/datos-tabla", async (req, res) => {
 });
 
 app.put("/actualizar_dato/:idp", async function actualizarDatoss(req, res) {
-  
   try {
-    const { idp } = req.params;
-    const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital} = req.body;
-    const result = await  pool.query(
-      "UPDATE puntuacion SET  personas_y_cultura_digital = $1, procesos_de_la_entidad = $2,datos_digitales_y_analytics = $3,   tecnologia_digital= $4 WHERE idp = $5 RETURNING *",
-      [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics,  tecnologia_digital, idp]
-    );
-    if (result.rows.length > 0) {
-      res.status(200).json(result.rows[0]);
-    }
-   else {
-    res.status(404).json("No se encontró ningún registro para actualizar con el ID proporcionado");
-  }
+      const { idp } = req.params;
+      const updatedData = req.body;
+
+      // Iterar sobre las claves del objeto updatedData
+      for (const key in updatedData) {
+          if (updatedData.hasOwnProperty(key)) {
+              const data = updatedData[key];
+              const { personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital } = data;
+              
+              // Actualizar la fila correspondiente en la base de datos
+              const result = await pool.query(
+                  "UPDATE puntuacion SET personas_y_cultura_digital = $1, procesos_de_la_entidad = $2, datos_digitales_y_analytics = $3, tecnologia_digital = $4 WHERE idp = $5",
+                  [personas_y_cultura_digital, procesos_de_la_entidad, datos_digitales_y_analytics, tecnologia_digital, idp]
+              );
+
+              // Manejar el resultado de la actualización (omitido en este ejemplo)
+          }
+      }
+
+      // Enviar una respuesta exitosa
+      res.status(200).send("Datos actualizados exitosamente.");
   } catch (error) {
-    console.error("Error al actualizar :", error);
-    res.status(500).send("Error al actualizar "+ error.message);
+      console.error("Error al actualizar:", error);
+      res.status(500).send("Error al actualizar: " + error.message);
   }
-})
+});
 
 
 
